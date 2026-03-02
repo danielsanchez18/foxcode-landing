@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+
+@import "preline/variants.css";
+@source "../../node_modules/preline/dist/*.js";
+
+@custom-variant dark (&:is(.dark *));
+
+body {
+  font-family: "Inter Variable", sans-serif;
+}
+
+@layer base {
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  body {
+    @apply bg-background;
+  }
+}
+
+@theme {
+  --color-primary: #ee4d31;
+  --color-primary-dark: #dd4025;
+
+  --color-background: #18181a;
+  --color-text: #fffff1;
+}
+
+/* Hide scrollbars while keeping scroll functionality */
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

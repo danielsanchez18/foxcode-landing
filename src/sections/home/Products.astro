@@ -1,0 +1,136 @@
+---
+import EscapifyLogo from "@/assets/logos/LogoEscapify.svg";
+---
+
+<section class="py-20 flex flex-col items-center justify-center gap-y-20 sm:gap-y-10 px-5">
+    <!-- Title -->
+    <div class="space-y-3 w-full max-w-5xl max-sm:text-center">
+        <h3 class="text-3xl lg:text-4xl font-medium text-white">
+            Productos que <span class="text-primary">escalan</span> con tu negocio
+        </h3>
+        <p class="max-w-3xl max-sm:text-sm text-neutral-300">
+            Creamos productos digitales pensados para crecer contigo: desde la
+            primera versión funcional hasta soluciones sólidas que acompañan tu
+            operación día a día.
+        </p>
+    </div>
+    <!-- End Title -->
+
+    <!-- Products Grid -->
+    <div
+        class="contain-content max-w-5xl mx-auto grid lg:grid-cols-3 items-center justify-center w-full rounded-xl border border-white/10 bg-background divide-x divide-white/10 divide-y"
+    >
+        <!-- FoxRooms Card -->
+        <a
+            href="/productos#foxrooms"
+            class="py-7 px-5 sm:px-7 w-full h-full space-y-7 group hover:bg-linear-to-b from-background via-background to-primary/10"
+        >
+            <div class="size-10 md:size-14 rounded-full mb-10">
+                <img
+                    src={EscapifyLogo.src}
+                    alt="FoxRooms Logo"
+                    class="size-10 md:size-14 object-contain mx-auto"
+                />
+            </div>
+
+            <div class="space-y-2">
+                <h4 class="text-2xl sm:text-3xl font-semibold text-white">
+                    FoxRomms
+                </h4>
+                <p class="text-neutral-300 text-sm">
+                    Plataforma integral para hoteles que necesitan gestionar
+                    reservas, huéspedes y operaciones diarias en un solo lugar.
+                    FoxRomms te ayuda a optimizar la ocupación, automatizar
+                    procesos y mejorar la experiencia de tus clientes sin
+                    complicaciones.
+                </p>
+            </div>
+
+            <div class="w-fit space-y-0.5">
+                <p
+                    class="text-primary font-semibold text-sm uppercase tracking-wider"
+                >
+                    Ver más
+                </p>
+                <div class="h-0.5 w-full bg-white/20 group-hover:bg-primary">
+                </div>
+            </div>
+        </a>
+
+        <!-- TODO: Cambiar logo y descripcion -->
+        <!-- Escapify Card -->
+        <a
+            href="/productos#escapify"
+            class="py-5 sm:py-7 px-5 sm:px-7 w-full h-full space-y-7 group hover:bg-linear-to-b from-background via-background to-primary/10"
+        >
+            <div class="size-10 md:size-14 mb-10">
+                <img
+                    src={EscapifyLogo.src}
+                    alt="Escapify Logo"
+                    class="size-10 md:size-14 object-contain mx-auto"
+                />
+            </div>
+
+            <div class="space-y-2">
+                <h4 class="text-2xl sm:text-3xl font-semibold text-white">
+                    Escapify
+                </h4>
+                <p class="text-neutral-300 text-sm">
+                    Plataforma multiempresa para gestionar tu ecommerce desde un
+                    único backoffice. Escapify te permite controlar inventario,
+                    pedidos, clientes y operaciones de múltiples tiendas en un
+                    solo lugar, optimizando tu flujo de trabajo y escalando tu
+                    negocio sin límites.
+                </p>
+            </div>
+
+            <div class="w-fit space-y-0.5">
+                <p
+                    class="text-primary font-semibold text-sm uppercase tracking-wider"
+                >
+                    Ver más
+                </p>
+                <div class="h-0.5 w-full bg-white/20 group-hover:bg-primary">
+                </div>
+            </div>
+        </a>
+
+        <!-- FoxEats Card -->
+        <a
+            href="/productos#foxeats"
+            class="py-5 sm:py-7 px-5 sm:px-7 w-full h-full space-y-7 group hover:bg-linear-to-b from-background via-background to-primary/10"
+        >
+            <div class="size-10 md:size-14 rounded-full mb-10">
+                <img
+                    src={EscapifyLogo.src}
+                    alt="FoxEats Logo"
+                    class="size-10 md:size-14 object-contain mx-auto"
+                />
+            </div>
+
+            <div class="space-y-2">
+                <h4 class="text-2xl sm:text-3xl font-semibold text-white">
+                    FoxEats
+                </h4>
+                <p class="text-neutral-300 text-sm">
+                    Plataforma pensada para negocios de comida que necesitan
+                    controlar pedidos, productos y operaciones en un solo lugar.
+                    FoxEats te ayuda a organizar tu menú, optimizar tiempos y
+                    mejorar la experiencia de tus clientes sin complicar tu día
+                    a día.
+                </p>
+            </div>
+
+            <div class="w-fit space-y-0.5">
+                <p
+                    class="text-primary font-semibold text-sm uppercase tracking-wider"
+                >
+                    Ver más
+                </p>
+                <div class="h-0.5 w-full bg-white/20 group-hover:bg-primary">
+                </div>
+            </div>
+        </a>
+    </div>
+    <!-- End Products Grid -->
+</section>

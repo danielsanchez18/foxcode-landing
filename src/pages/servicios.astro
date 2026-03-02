@@ -1,0 +1,21 @@
+---
+import SelectServicePriceModal from "@/components/SelectServicePriceModal.astro";
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/sections/services/Hero.astro";
+import ServicesGrid from "@/sections/services/ServicesGrid.astro";
+---
+
+<Layout>
+    <Hero />
+    <div id="servicios">
+        <ServicesGrid />
+    </div>
+
+    <!-- Select Service Price Modal Component -->
+    <div id="select-service-price-modal" 
+        class="size-full hs-overlay hidden fixed top-0 start-0 z-80 overflow-x-hidden overflow-y-auto hs-overlay hs-overlay-backdrop-open:bg-black/50 hs-overlay hs-overlay-backdrop-open:backdrop-blur-2xl"
+        role="dialog" tabindex="-1" aria-labelledby="select-service-price-modal-label">
+        <SelectServicePriceModal />
+    </div>
+
+</Layout>

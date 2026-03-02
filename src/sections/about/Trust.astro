@@ -1,0 +1,174 @@
+---
+import PhoneMockup from "@/assets/images/mockup-iphone-front.png";
+---
+
+<section
+    class="max-w-5xl w-full mx-auto py-20 max-xl:px-5 flex flex-col gap-y-20"
+>
+    <!-- Title -->
+    <div class="flex flex-col items-center gap-y-3">
+        <p class="text-sm uppercase text-neutral-300 tracking-widest">
+            conócenos más
+        </p>
+        <h3
+            class="text-3xl md:text-4xl max-w-3xl text-center text-balance font-medium text-white"
+        >
+            Confía en quienes <span class="text-primary">transforman</span> tu visión
+            en realidad
+        </h3>
+    </div>
+
+    <!-- Bento Grid -->
+    <div
+        class="grid md:grid-cols-3 lg:grid-cols-6 gap-2 overflow-hidden relative"
+    >
+        <div
+            class="md:h-96 md:col-span-2 lg:col-span-4 relative rounded-2xl overflow-hidden group bg-linear-to-r from-black/50 via-black/10 to-black/50 flex flex-col justify-end p-12 sm:px-10 md:px-12"
+        >
+            <div
+                class="absolute inset-0 opacity-20 dark:opacity-30 pointer-events-none transition-transform group-hover:scale-110 duration-700"
+            >
+                <svg
+                    height="100%"
+                    viewBox="0 0 400 400"
+                    width="100%"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <defs>
+                        <pattern
+                            height="40"
+                            id="grid"
+                            patternUnits="userSpaceOnUse"
+                            width="40"
+                        >
+                            <path
+                                d="M 40 0 L 0 0 0 40"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="0.5"></path>
+                        </pattern>
+                    </defs>
+                    <rect fill="url(#grid)" height="100%" width="100%"></rect>
+                </svg>
+            </div>
+            <div class="relative z-10 lg:mb-5">
+                <h2 class="text-4xl text-balance md:text-5xl font-medium mb-4">
+                    2 Años
+                    <span class="text-primary">transformando</span> ideas
+                </h2>
+                <p class="text-neutral-300 text-sm sm:text-base max-w-md">
+                    Desde nuestro inicio, hemos ayudado a empresas locales e
+                    internacionales a digitalizar sus procesos con tecnología de
+                    punta.
+                </p>
+            </div>
+        </div>
+
+        <div
+            class="bg-linear-to-r from-black/50 via-black/10 to-black/50 overflow-hidden h-96 lg:col-span-2 rounded-2xl group"
+        >
+            <div class="py-7 pt-10 px-10">
+                <h3
+                    class="text-2xl sm:text-2xl md:text-xl lg:text-2xl text-balance text-center font-medium"
+                >
+                    Tu software, tu visión, nuestra <span class="text-primary"
+                        >experiencia</span
+                    >
+                </h3>
+            </div>
+
+            <img
+                src={PhoneMockup.src}
+                alt="Mockup de teléfono"
+                class="max-w-85% mx-auto h-full object-cover rounded-2xl group-hover:scale-104 transition-transform duration-700"
+            />
+        </div>
+
+        <div class="grid md:grid-cols-2 md:col-span-3 lg:col-span-6 gap-2">
+            <div
+                class="bg-linear-to-r from-black/50 via-black/10 to-black/50 min-h-48 rounded-2xl relative overflow-hidden group"
+            >
+                <div class="p-12 space-y-3 text-balance flex flex-col justify-center h-full">
+                    <h4
+                        class="text-white font-medium text-2xl md:text-xl lg:text-2xl"
+                    >
+                        <span class="text-primary">Desarrollo</span> de apps y sistemas
+                    </h4>
+                    <p class="text-neutral-300 text-sm">
+                        Aplicaciones móviles, plataformas web y sistemas
+                        internos diseñados para optimizar procesos y mejorar la
+                        experiencia del usuario.
+                    </p>
+                </div>
+
+                <!-- Icon -->
+                <div
+                    class="absolute -end-2 -bottom-4 size-26 rounded-full group-hover:scale-110 transition duration-700"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-code-xml-icon lucide-code-xml size-26 text-white/20"
+                        ><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"
+                        ></path><path d="m14.5 4-5 16"></path></svg
+                    >
+                </div>
+            </div>
+
+            <div
+                class="bg-linear-to-r from-black/50 via-black/10 to-black/50 min-h-48 rounded-2xl relative overflow-hidden group"
+            >
+                <div class="p-12 flex items-center h-full">
+                    <div class="space-y-4">
+                        <h4 class="text-4xl md:text-5xl font-medium">100%</h4>
+                        <p class="text-neutral-300 text-sm">
+                            de satisfacción del cliente
+                        </p>
+                        <div class="flex items-center gap-x-3 pt-4 border-t border-white/30">
+                            <div class="flex items-center -space-x-2">
+                                <div class="bg-white/20 rounded-full size-8"></div>
+                                <div class="bg-white/20 rounded-full size-8"></div>
+                                <div class="bg-white/20 rounded-full size-8"></div>
+                            </div>
+                            <p class="text-sm text-neutral-300 uppercase">
+                                6 Clientes recurrentes
+                            </p>
+                        </div>
+                    </div>  
+                </div>
+
+                <!-- Icon -->
+                <div
+                    class="absolute -end-2 -bottom-4 size-26 rounded-full group-hover:scale-110 transition duration-700"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-badge-check-icon lucide-badge-check size-26 text-white/20"
+                        ><path
+                            d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"
+                        ></path><path d="m9 12 2 2 4-4"></path></svg
+                    >
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="absolute size-full flex flex-col justify-center items-center">
+            <div class="size-96 rounded-full bg-yellow-50"></div>
+        </div> -->
+    </div>
+</section>

@@ -1,0 +1,10 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import LegalTabs from "@/sections/legal/LegalTabs";
+---
+
+<Layout>
+    <div class="mt-15 max-w-5xl mx-auto max-xl:px-5">
+        <LegalTabs client:only="react" />
+    </div>
+</Layout>

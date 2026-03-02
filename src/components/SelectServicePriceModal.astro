@@ -1,0 +1,371 @@
+---
+import QuoteSummary from "./QuoteSummary.astro";
+import InfoContact from "./InfoContact.astro";
+import DetailsProyect from "./DetailsProyect.astro";
+import AddServices from "./AddServices.astro";
+
+---
+<div class="flex flex-col items-center justify-center size-full p-3" id="quote-modal-container">
+
+    <div class="overflow-y-auto max-w-4xl w-full rounded-2xl border border-white/10 md:flex bg-background divide-x divide-y divide-white/10">
+        
+        <!-- Summary -->
+        <div class="w-full md:w-xl">
+            <QuoteSummary />
+        </div>
+        
+        <!-- Details -->
+        <div class="w-full relative">
+
+            <!-- Step 1 -->
+            <div class="step-content active" data-step-content="1">
+                <InfoContact />
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step-content" data-step-content="2">
+                <DetailsProyect />
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step-content" data-step-content="3">
+                <AddServices />
+            </div>
+        </div>
+    </div>    
+
+</div>
+
+<style>
+    /* Step Content Styles */
+    .step-content {
+        display: none;
+    }
+
+    .step-content.active {
+        display: block;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateX(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+</style>
+
+<script>
+    // State management for quote
+    interface QuoteItem {
+        type: 'plan' | 'service';
+        name: string;
+        price: number;
+    }
+
+    class QuoteManager {
+        private items: QuoteItem[] = [];
+        private quoteItemsContainer: HTMLElement | null;
+        private quoteTotalElement: HTMLElement | null;
+
+        constructor() {
+            this.quoteItemsContainer = document.getElementById('quote-items');
+            this.quoteTotalElement = document.getElementById('quote-total');
+            this.init();
+        }
+
+        init() {
+            // Listen to all pricing card buttons
+            document.addEventListener('click', (e) => {
+                const target = e.target as HTMLElement;
+                const button = target.closest('.pricing-select-btn') as HTMLElement;
+                
+                if (button) {
+                    const level = button.getAttribute('data-plan-level') || '';
+                    const price = button.getAttribute('data-plan-price') || '$0';
+                    const description = button.getAttribute('data-plan-description') || '';
+                    const serviceTitle = button.getAttribute('data-service-title') || 'Servicio';
+                    
+                    this.selectPlan(level, price, description, serviceTitle);
+                }
+            });
+        }
+
+        selectPlan(level: string, priceStr: string, description: string, serviceTitle: string) {
+            // Reset everything when selecting a new plan
+            this.reset();
+            
+            // Extract numeric value from price string (e.g., "$1,950" -> 1950)
+            const parsedPrice = parseFloat(priceStr.replace(/[$,]/g, ''));
+            // If price is NaN (e.g., "A tratar"), set to 0
+            const price = isNaN(parsedPrice) ? 0 : parsedPrice;
+            
+            // Add new plan
+            this.items.unshift({
+                type: 'plan',
+                name: `${serviceTitle} - Plan ${level}`,
+                price: price
+            });
+
+            this.updateUI();
+            
+            // Reset step to 1
+            if ((window as any).stepManager) {
+                (window as any).stepManager.reset();
+            }
+            
+            // Reset services selection
+            if ((window as any).resetServices) {
+                (window as any).resetServices();
+            }
+
+            // Reset forms
+            this.resetForms();
+        }
+
+        resetForms() {
+            // Reset contact form
+            const contactForm = document.getElementById('contact-form') as HTMLFormElement;
+            if (contactForm) {
+                contactForm.reset();
+            }
+
+            // Reset project form
+            const projectForm = document.getElementById('project-form') as HTMLFormElement;
+            if (projectForm) {
+                projectForm.reset();
+            }
+        }
+
+        addService(name: string, price: number) {
+            // Check if service already exists
+            const existingIndex = this.items.findIndex(
+                item => item.type === 'service' && item.name === name
+            );
+
+            if (existingIndex === -1) {
+                this.items.push({
+                    type: 'service',
+                    name: name,
+                    price: price
+                });
+            }
+
+            this.updateUI();
+        }
+
+        removeService(name: string) {
+            this.items = this.items.filter(
+                item => !(item.type === 'service' && item.name === name)
+            );
+            this.updateUI();
+        }
+
+        updateUI() {
+            if (!this.quoteItemsContainer || !this.quoteTotalElement) return;
+
+            // Clear container
+            this.quoteItemsContainer.innerHTML = '';
+
+            if (this.items.length === 0) {
+                this.quoteItemsContainer.innerHTML = `
+                    <p class="text-neutral-400 italic col-span-2 text-center py-4">
+                        Selecciona un plan para comenzar
+                    </p>
+                `;
+                this.quoteTotalElement.textContent = '$0';
+                return;
+            }
+
+            // Separate plan and services
+            const plan = this.items.find(item => item.type === 'plan');
+            const services = this.items.filter(item => item.type === 'service');
+
+            // Render plan first
+            if (plan) {
+                const nameElement = document.createElement('p');
+                nameElement.className = 'line-clamp-2';
+                nameElement.textContent = plan.name;
+
+                const priceElement = document.createElement('p');
+                priceElement.className = 'font-semibold text-white text-end';
+                priceElement.textContent = `$${plan.price.toLocaleString()}`;
+
+                this.quoteItemsContainer!.appendChild(nameElement);
+                this.quoteItemsContainer!.appendChild(priceElement);
+            }
+
+            // Render services
+            if (services.length === 0) {
+                // No services
+            } else if (services.length <= 2) {
+                // Show individual services
+                services.forEach(service => {
+                    const nameElement = document.createElement('p');
+                    nameElement.className = 'line-clamp-2';
+                    nameElement.textContent = service.name;
+
+                    const priceElement = document.createElement('p');
+                    priceElement.className = 'font-semibold text-white text-end';
+                    priceElement.textContent = `$${service.price.toLocaleString()}`;
+
+                    this.quoteItemsContainer!.appendChild(nameElement);
+                    this.quoteItemsContainer!.appendChild(priceElement);
+                });
+            } else {
+                // Show grouped services when more than 2
+                const servicesTotal = services.reduce((sum, s) => sum + s.price, 0);
+                
+                const nameElement = document.createElement('p');
+                nameElement.className = 'line-clamp-2';
+                nameElement.textContent = `${services.length} servicios adicionales`;
+
+                const priceElement = document.createElement('p');
+                priceElement.className = 'font-semibold text-white text-end';
+                priceElement.textContent = `$${servicesTotal.toLocaleString()}`;
+
+                this.quoteItemsContainer!.appendChild(nameElement);
+                this.quoteItemsContainer!.appendChild(priceElement);
+            }
+
+            // Update total
+            const total = this.items.reduce((sum, item) => sum + item.price, 0);
+            this.quoteTotalElement.textContent = `$${total.toLocaleString()}`;
+        }
+
+        getItems() {
+            return this.items;
+        }
+
+        reset() {
+            this.items = [];
+            this.updateUI();
+        }
+    }
+
+    // Initialize quote manager
+    const quoteManager = new QuoteManager();
+
+    // Export to window for access from other components
+    (window as any).quoteManager = quoteManager;
+
+    // Step Navigation Manager
+    class StepManager {
+        private currentStep: number = 1;
+        private totalSteps: number = 3;
+        private stepIndicators: NodeListOf<Element>;
+        private stepContents: NodeListOf<Element>;
+        private stepLines: NodeListOf<Element>;
+        private currentStepNumber: HTMLElement | null;
+
+        constructor() {
+            this.stepIndicators = document.querySelectorAll('.step-indicator');
+            this.stepContents = document.querySelectorAll('.step-content');
+            this.stepLines = document.querySelectorAll('.step-line');
+            this.currentStepNumber = document.getElementById('current-step-number');
+            this.attachEventListeners();
+        }
+
+        attachEventListeners() {
+            // Listen for navigation from all forms
+            document.addEventListener('click', (e) => {
+                const target = e.target as HTMLElement;
+                
+                // Check if clicked element or its parent is a button
+                const button = target.closest('button');
+                if (!button) return;
+
+                const buttonText = button.textContent?.trim().toLowerCase() || '';
+                
+                // Handle "Siguiente" buttons
+                if (buttonText.includes('siguiente') || buttonText === '->') {
+                    e.preventDefault();
+                    this.nextStep();
+                }
+                // Handle "Anterior" buttons
+                else if (buttonText.includes('anterior') || buttonText === '<-') {
+                    e.preventDefault();
+                    this.previousStep();
+                }
+            });
+        }
+
+        nextStep() {
+            if (this.currentStep < this.totalSteps) {
+                this.currentStep++;
+                this.updateUI();
+            }
+        }
+
+        previousStep() {
+            if (this.currentStep > 1) {
+                this.currentStep--;
+                this.updateUI();
+            }
+        }
+
+        goToStep(step: number) {
+            if (step >= 1 && step <= this.totalSteps) {
+                this.currentStep = step;
+                this.updateUI();
+            }
+        }
+
+        updateUI() {
+            // Update step contents visibility
+            this.stepContents.forEach((content, index) => {
+                if (index + 1 === this.currentStep) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+
+            // Update step indicators
+            this.stepIndicators.forEach((indicator, index) => {
+                const stepNumber = index + 1;
+                indicator.classList.remove('active', 'completed');
+                
+                if (stepNumber === this.currentStep) {
+                    indicator.classList.add('active');
+                } else if (stepNumber < this.currentStep) {
+                    indicator.classList.add('completed');
+                }
+            });
+
+            // Update lines
+            this.stepLines.forEach((line, index) => {
+                const lineNumber = index + 1;
+                if (lineNumber < this.currentStep) {
+                    line.classList.add('completed');
+                } else {
+                    line.classList.remove('completed');
+                }
+            });
+
+            // Update step number text
+            if (this.currentStepNumber) {
+                this.currentStepNumber.textContent = this.currentStep.toString();
+            }
+        }
+
+        getCurrentStep() {
+            return this.currentStep;
+        }
+
+        reset() {
+            this.currentStep = 1;
+            this.updateUI();
+        }
+    }
+
+    // Initialize step manager
+    const stepManager = new StepManager();
+
+    // Export to window for access from other components
+    (window as any).stepManager = stepManager;
+</script>

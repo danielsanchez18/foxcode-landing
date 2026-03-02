@@ -1,0 +1,41 @@
+---
+import FeaturesGrid from "@/sections/home/FeaturesGrid.astro";
+---
+
+<!-- Start About Section -->
+<section class="py-20 flex flex-col items-center justify-center gap-y-20 sm:gap-y-10 px-5 max-w-5xl mx-auto">
+    <!-- Title -->
+    <div class="space-y-3 text-center max-w-4xl mx-auto">
+        <p class="text-primary uppercase font-semibold tracking-widest">
+            ¿Quienes Somos?
+        </p>
+        <h3
+            class="text-3xl lg:text-4xl font-medium text-white text-balance"
+        >
+            Una startup que convierte ideas en realidad digital
+        </h3>
+        <p class="max-w-3xl max-sm:text-sm mt-5 mx-auto text-neutral-300">
+            Somos un equipo joven y apasionado que combina agilidad, innovación
+            y experiencia técnica para crear soluciones digitales que impulsan
+            el crecimiento de tu negocio.
+        </p>
+    </div>
+    <!-- End Title -->
+
+    <!-- Features list -->
+    <FeaturesGrid />
+    <!-- End Features list -->
+
+    <!-- Button -->
+    <div class="mx-auto w-fit">
+        <a href="/nosotros">
+            <button
+                type="button"
+                class="hidden sm:block bg-white/5 text-white font-medium px-4 py-2.5 rounded-full hover:bg-white/10 transition cursor-pointer"
+            >
+                Conoce más sobre nosotros
+            </button>
+        </a>
+    </div>
+</section>
+<!-- End About Section -->

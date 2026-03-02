@@ -1,0 +1,20 @@
+---
+import ServicesContainer from "@/components/ServicesContainer.astro";
+import { services } from "@/core/ServicesData";
+---
+
+<section 
+    data-hs-accordion-always-open
+    class="hs-accordion-group py-20 flex flex-col gap-y-30 max-w-5xl max-xl:px-5 mx-auto"
+>
+    {
+        services.map((service) => (
+            <ServicesContainer
+                id={service.id}
+                title={service.title}
+                description={service.description}
+                plans={service.plans || []}
+            />
+        ))
+    }
+</section>

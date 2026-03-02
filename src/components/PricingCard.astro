@@ -1,0 +1,70 @@
+---
+interface Props {
+    level: string;
+    price: string;
+    description: string;
+    features: string[];
+    isRecommended?: boolean;
+    serviceTitle?: string;
+}
+
+const bgClass = Astro.props.isRecommended ? "bg-linear-to-b from-white/5 to-primary/20" : "bg-white/5";
+const borderClass = Astro.props.isRecommended ? "border-primary" : "border-white/10";
+const bgLevelClass = Astro.props.isRecommended ? "bg-primary" : "bg-white/10";
+---
+
+<div
+    class={`${bgClass} rounded-xl border ${borderClass} px-5 py-5 flex flex-col gap-y-4`}
+>
+    <!-- Level -->
+    <div class={`${bgLevelClass} px-3 py-2 rounded-full w-fit text-center`}>
+        <p class="font-semibold uppercase text-xs leading-none">{Astro.props.level}</p>
+    </div>
+
+    <p class="text-3xl font-semibold">{Astro.props.price}</p>
+
+    <p class="text-xs text-neutral-300">
+        {Astro.props.description}
+    </p>
+
+    <hr class="h-px border-white/20">
+
+    <!-- Features -->
+    <div class="h-full">
+        <ul class="text-[13px] text-neutral-300 flex flex-col gap-y-1">
+            {
+                Astro.props.features.map((feature: string) => (
+                    <li class="flex gap-x-1">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            class="size-4 mt-0.5"
+                        >
+                            <path
+                                fill="currentColor"
+                                fill-rule="evenodd"
+                                d="M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18m-.232-5.36l5-6l-1.536-1.28l-4.3 5.159l-2.225-2.226l-1.414 1.414l3 3l.774.774z"
+                                clip-rule="evenodd"
+                            />
+                        </svg>
+                        {feature}
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+
+    <button
+        type="button"
+        class="pricing-select-btn bg-primary text-white font-medium px-2 py-1.5 text-sm rounded-full hover:bg-primary-dark transition cursor-pointer"
+        aria-haspopup="dialog" aria-expanded="false" aria-controls="select-service-price-modal" data-hs-overlay="#select-service-price-modal"
+        data-plan-level={Astro.props.level}
+        data-plan-price={Astro.props.price}
+        data-plan-description={Astro.props.description}
+        data-service-title={Astro.props.serviceTitle || "Servicio"}
+    >
+        Cotizar ahora
+    </button>
+</div>

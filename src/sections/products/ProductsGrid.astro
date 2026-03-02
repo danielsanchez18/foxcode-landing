@@ -1,0 +1,138 @@
+---
+import MockupIphoneFront from "@/assets/images/mockup-iphone-front.png";
+
+interface Product {
+    id: string;
+    category: string;
+    title: string;
+    description: string;
+    mainFeature: {
+        title: string;
+        description: string;
+    };
+    secondaryFeature: {
+        title: string;
+        description: string;
+    };
+}
+
+const products: Product[] = [
+    {
+        id: "escapify",
+        category: "ECOMMERCE",
+        title: "Escapify: Tu tienda online lista en minutos",
+        description: "Crea tu tienda en línea de manera rápida y sencilla con Escapify. Diseños personalizables, gestión de inventario y pasarelas de pago integradas para que puedas empezar a vender de inmediato.",
+        mainFeature: {
+            title: "Gestión completa de tu inventario en tiempo real",
+            description: "Controla tu stock, actualiza precios y administra variantes de productos desde un único panel intuitivo. Recibe alertas automáticas cuando tus productos estén por agotarse y mantén tu tienda siempre actualizada sin complicaciones."
+        },
+        secondaryFeature: {
+            title: "Diseño responsive para todos los dispositivos",
+            description: "Tu tienda se verá perfecta en cualquier dispositivo. Nuestros diseños están optimizados para móviles, tablets y escritorio, garantizando la mejor experiencia de compra para tus clientes."
+        }
+    },
+    {
+        id: "foxrooms",
+        category: "RESERVAS",
+        title: "FoxRooms: Sistema de reservas inteligente",
+        description: "Optimiza la gestión de tu hotel, hostal o espacio de alojamiento con FoxRooms. Sistema completo de reservas, check-in digital y panel de administración centralizado para maximizar tu ocupación.",
+        mainFeature: {
+            title: "Calendario inteligente con sincronización automática",
+            description: "Visualiza todas tus reservas en un calendario interactivo que se sincroniza automáticamente con plataformas como Booking y Airbnb. Evita dobles reservas y gestiona la disponibilidad en tiempo real desde cualquier lugar."
+        },
+        secondaryFeature: {
+            title: "Check-in digital sin contacto",
+            description: "Moderniza la experiencia de tus huéspedes con check-in digital. Tus clientes pueden registrarse desde su móvil, acceder a códigos de entrada y recibir información importante sin necesidad de esperas en recepción."
+        }
+    },
+    {
+        id: "foxeats",
+        category: "RESTAURANTES",
+        title: "FoxEats: Menú digital y sistema de pedidos",
+        description: "Transforma tu restaurante con FoxEats. Menús digitales interactivos, sistema de pedidos en línea y gestión de mesas integrada para ofrecer un servicio más rápido y eficiente a tus comensales.",
+        mainFeature: {
+            title: "Menú digital con actualizaciones instantáneas",
+            description: "Actualiza tu menú en segundos sin necesidad de reimprimir cartas. Agrega fotos atractivas, ingredientes, alérgenos y promociones especiales. Tus clientes pueden ver el menú escaneando un código QR desde su mesa."
+        },
+        secondaryFeature: {
+            title: "Sistema de pedidos y pagos integrado",
+            description: "Los clientes pueden hacer pedidos directamente desde su móvil y pagar de forma segura. Reduce errores en los pedidos, acelera el servicio y mejora la experiencia gastronómica con tecnología moderna."
+        }
+    }
+];
+---
+
+<section
+    id="productos"
+    class="w-full grid gap-y-20 md:gap-y-40 py-10 max-w-5xl mx-auto max-lg:px-5"
+>
+    {
+        products.map((product, index) => {
+            const isEven = index % 2 === 0;
+            const textAlign = isEven ? "" : "md:text-end";
+            const gridOrder = isEven ? "" : "md:flex-row-reverse";
+
+            return (
+                <article class="grid md:grid-cols-2 gap-5 md:gap-x-5 md:gap-y-10">
+                    <div
+                        id={product.id} 
+                        class={`flex flex-col gap-y-5 md:col-span-2 max-w-3xl ${isEven ? '' : 'md:ml-auto'} ${textAlign}`}>
+                        <div
+                            class={`px-3 py-2.5 flex items-center gap-x-1.5 text-xs rounded-full bg-primary font-semibold w-fit uppercase tracking-wider ${isEven ? '' : 'md:ml-auto'}`}
+                        >
+                            <p class="leading-none">{product.category}</p>
+                        </div>
+                        <h3 class="text-3xl md:text-4xl font-medium">
+                            {product.title}
+                        </h3>
+                        <p class="text-neutral-300 max-md:text-sm">
+                            {product.description}
+                        </p>
+                    </div>
+
+                    <div class={`flex flex-col md:flex-row gap-5 md:col-span-2 ${gridOrder}`}>
+                        <div class="rounded-xl overflow-hidden bg-white/5 grid flex-1">
+                            <!-- Preview -->
+                            <div class="min-h-60 bg-white/5"></div>
+
+                            <div class="flex items-center justify-center gap-x-2 mt-5">
+                                <div class="size-10 rounded-md bg-white/5"></div>
+                                <div class="size-10 rounded-md bg-white/5"></div>
+                                <div class="size-10 rounded-md bg-white/5"></div>
+                                <div class="size-10 rounded-md bg-white/5"></div>
+                                <div class="size-10 rounded-md bg-white/5"></div>
+                            </div>
+
+                            <div class="p-5 space-y-2">
+                                <h4 class="text-white text-lg">
+                                    {product.mainFeature.title}
+                                </h4>
+                                <p class="text-neutral-300 text-sm">
+                                    {product.mainFeature.description}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="rounded-xl overflow-hidden bg-white/5 h-120 space-y-5 flex-1">
+                            <div class="p-5 space-y-2">
+                                <h4 class="text-white text-lg">{product.secondaryFeature.title}</h4>
+                                <p class="text-neutral-300 text-sm">
+                                    {product.secondaryFeature.description}
+                                </p>
+                            </div>
+
+                            <!-- Preview Phone -->
+                            <div class="h-full overflow-hidden">
+                                <img
+                                    src={MockupIphoneFront.src}
+                                    alt={`Mockup ${product.title}`}
+                                    class="mx-auto h-full animate-float"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            );
+        })
+    }
+</section>

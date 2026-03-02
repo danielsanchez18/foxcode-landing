@@ -1,23 +1,69 @@
+---
+import Navbar from "@/sections/shared/Navbar.astro";
+import Footer from "@/sections/shared/Footer.astro";
+import CTA from "@/sections/shared/CTA.astro";
+import ContactUsModal from "@/components/ContactUsModal";
+import LinksSidebar from "@/components/LinksSidebar.astro";
+import "@/styles/global.css";
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link
+			rel="icon"
+			type="image/icon-x"
+			href="/favicon-dark.webp"
+			media="(prefers-color-scheme: light)"
+		/>
+		<link
+			rel="icon"
+			type="image/icon-x"
+			href="/favicon-light.webp"
+			media="(prefers-color-scheme: dark)"
+		/>
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+			rel="stylesheet"
+		/>
+
+		<title>FoxCode</title>
 	</head>
-	<body>
-		<slot />
+	<body class="bg-background text-text scroll-smooth w-full">
+		<div class="top-5 z-30 sticky max-xl:px-5">
+			<Navbar />
+		</div>
+		<main class="w-full">
+			<slot />
+		</main>
+		<CTA />
+		<Footer />
+
+		<div id="contact-us-modal" 
+			class="size-full hs-overlay hidden fixed top-0 start-0 z-80 overflow-x-hidden overflow-y-auto hs-overlay hs-overlay-backdrop-open:bg-black/50 hs-overlay hs-overlay-backdrop-open:backdrop-blur-2xl"
+			role="dialog" tabindex="-1" aria-labelledby="contact-us-modal-label">
+			<ContactUsModal client:only="react" />
+		</div>
+
+		<div 
+			id="hs-links-sidebar" 
+			class="hs-overlay hs-overlay-open:translate-x-0 hidden -translate-x-full fixed top-0 start-0 hs-overlay-backdrop-open:backdrop-blur-2xl hs-overlay-backdrop-open:bg-black/50 transition-all duration-300 transform h-full w-full z-80" 
+			role="dialog" 
+			tabindex="-1" 
+			aria-labelledby="hs-links-sidebar-label"
+		>
+			<LinksSidebar />
+		</div>
+
 	</body>
+
+	<!-- Preline UI -->
+	<script is:inline src="./node_modules/preline/dist/index.js"></script>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

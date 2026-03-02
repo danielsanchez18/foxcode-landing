@@ -1,0 +1,58 @@
+<section class="py-20 overflow-hidden w-full max-w-360 px-5 mx-auto relative">
+    <!-- Gradient Overlay -->
+    <div
+        class="absolute inset-0 z-50 size-full bg-linear-to-r from-background/80 via-transparent to-background/80"
+    >
+    </div>
+
+    <!-- Grid Carrousel -->
+    <div class="grid grid-flow-col w-fit gap-2 animate-scroll-left">
+        <!-- TODO: Change Images -->
+        <div class="h-full w-52 bg-neutral-800 rounded-lg row-span-2"></div>
+
+        <div class="h-40 w-72 bg-neutral-800 rounded-lg"></div>
+        <div class="h-40 w-72 bg-neutral-800 rounded-lg"></div>
+        <div class="h-40 w-72 bg-neutral-800 rounded-lg"></div>
+        <div class="h-40 w-72 bg-neutral-800 rounded-lg"></div>
+
+        <div class="h-full w-52 bg-neutral-800 rounded-lg row-span-2"></div>
+
+        <div class="h-40 w-72 bg-neutral-800 rounded-lg"></div>
+        <div class="h-40 w-72 bg-neutral-800 rounded-lg"></div>
+        <div class="h-40 w-72 bg-neutral-800 rounded-lg"></div>
+        <div class="h-40 w-72 bg-neutral-800 rounded-lg"></div>
+
+        <div class="h-full w-52 bg-neutral-800 rounded-lg row-span-2"></div>
+
+        <div class="h-40 w-72 bg-neutral-800 rounded-lg"></div>
+        <div class="h-40 w-72 bg-neutral-800 rounded-lg"></div>
+        <div class="h-40 w-72 bg-neutral-800 rounded-lg"></div>
+        <div class="h-40 w-72 bg-neutral-800 rounded-lg"></div>
+
+        <div class="h-full w-52 bg-neutral-800 rounded-lg row-span-2"></div>
+
+        <div class="h-40 w-72 bg-neutral-800 rounded-lg"></div>
+        <div class="h-40 w-72 bg-neutral-800 rounded-lg"></div>
+        <div class="h-40 w-72 bg-neutral-800 rounded-lg"></div>
+        <div class="h-40 w-72 bg-neutral-800 rounded-lg"></div>
+    </div>
+</section>
+
+<style>
+    @keyframes scroll-left {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    .animate-scroll-left {
+        animation: scroll-left 30s linear infinite;
+    }
+
+    .animate-scroll-left:hover {
+        animation-play-state: paused;
+    }
+</style>

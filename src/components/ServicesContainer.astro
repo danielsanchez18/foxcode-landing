@@ -1,0 +1,70 @@
+---
+import CarrouselServices from "./CarrouselServices.astro";
+import PricingCard from "./PricingCard.astro";
+
+interface Props {
+    id: string;
+    title: string;
+    description: string;
+    plans: {
+        level: string;
+        price: string;
+        description: string;
+        features: string[];
+        isRecommended?: boolean;
+    }[];
+}
+
+const { id, title, description, plans } = Astro.props;
+---
+
+<div id={id} class="flex flex-col gap-y-5 hs-accordion">
+    <h3 class="uppercase font-semibold text-white tracking-wide text-2xl">
+        {title}
+    </h3>
+    <p class="text-neutral-300 tracking-wide font-light">
+        {description}
+    </p>
+
+    <!-- Carrousel -->
+    <div class="bg-white/5 backdrop-blur-2xl rounded-lg h-96">
+        <CarrouselServices />
+    </div>
+    <!-- <div class="h-96">
+    </div> -->
+
+    <!-- Pricing -->
+    <div 
+        id="hs-unstyled-collapse-one"
+        class="hs-accordion-content hidden overflow-hidden transition-[height] duration-300"
+        role="region" aria-labelledby="hs-unstyled-heading-one"
+    >
+        <div
+            data-pricing-container
+            class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"
+        >
+            {
+                plans.map((plan) => (
+                    <PricingCard
+                        level={plan.level}
+                        price={plan.price}
+                        description={plan.description}
+                        features={plan.features}
+                        isRecommended={plan.isRecommended}
+                        serviceTitle={title}
+                    />
+                ))
+            }
+        </div>
+    </div>
+
+    <button
+        type="button"
+        data-toggle-button
+        class="bg-white/5 text-white font-medium px-4 py-2.5 rounded-full hover:bg-white/10 transition cursor-pointer hs-accordion-toggle"
+        aria-expanded="true" aria-controls="hs-unstyled-collapse-one"
+    >
+        <span class="hs-accordion-active:hidden block">Mostrar planes</span>
+        <span class="hs-accordion-active:block hidden">Ocultar planes</span>
+    </button>
+</div>

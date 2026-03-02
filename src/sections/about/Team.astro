@@ -1,0 +1,33 @@
+---
+import StaffCard from "@/components/StaffCard.astro";
+import { staffMembers } from "@/core/StaffData";
+---
+
+<section
+    class="max-w-5xl w-full mx-auto py-20 max-xl:px-5 flex flex-col gap-y-10"
+>
+    <!-- Title -->
+    <div class="flex flex-col text-center max-w-3xl mx-auto gap-y-3">
+        <h3 class="text-3xl md:text-4xl font-medium text-white">
+            Las personas detrás del <span class="text-primary">código</span>
+        </h3>
+
+        <p class="max-sm:text-sm text-neutral-300">
+            Un equipo multidisciplinar unido por la pasión de crear productos
+            digitales excepcionales.
+        </p>
+    </div>
+
+    <!-- Team members -->
+    <div class="flex flex-wrap items-center justify-center gap-10">
+        {staffMembers.map((member) => (
+            <StaffCard 
+                name={member.name}
+                role={member.role}
+                imageUrl={member.imageUrl}
+                href={member.href}
+            />
+        ))}
+    </div>
+
+</section>

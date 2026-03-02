@@ -1,0 +1,51 @@
+<div class="px-5 md:px-10 py-5 flex flex-col gap-y-5">
+    <h3 class="text-lg font-medium text-white">Detalles del proyecto</h3>
+
+    <form id="project-form" class="flex flex-col gap-y-5">
+        <!-- Descripción -->
+        <div class="space-y-2">
+            <label
+                for="project-description"
+                class="block text-sm text-neutral-300"
+                >Describe tu proyecto</label
+            >
+            <textarea
+                name="project-description"
+                id="project-description"
+                rows="5"
+                placeholder="Describe tu proyecto, qué necesitas, qué quieres lograr, etc."
+                class="w-full px-5 py-2.5 bg-neutral-800 text-sm border border-neutral-700 rounded-lg text-white resize-none overflow-hidden"
+            ></textarea>
+        </div>
+
+        <!-- Select Day -->
+        <div class="space-y-2">
+            <label for="date" class="block text-sm text-neutral-300"
+                >Fecha de reunión</label
+            >
+            <input
+                type="date"
+                name="date"
+                id="date"
+                placeholder="Selecciona una fecha para la reunión"
+                class="w-full px-5 py-2.5 bg-neutral-800 text-sm border border-neutral-700 rounded-lg text-white"
+            />
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex gap-x-2">
+            <button
+                type="button"
+                class="w-full py-2.5 bg-white/5 text-white rounded-lg text-sm font-medium hover:bg-white/10 transition-colors"
+            > 
+                Anterior 
+            </button>
+            <button
+                type="button"
+                class="w-full py-2.5 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors"
+            >
+                Siguiente ->
+            </button>
+        </div>
+    </form>
+</div>

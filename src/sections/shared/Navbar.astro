@@ -1,0 +1,98 @@
+---
+import LogoFullWhite from "@/assets/logos/logo-full-white.webp";
+import Image from "astro/components/Image.astro";
+
+const navLinks = [
+    { href: "/", label: "Inicio" },
+    { href: "/servicios", label: "Servicios" },
+    { href: "/productos", label: "Productos" },
+    { href: "/nosotros", label: "Nosotros" },
+];
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) => {
+    if (href === "/") {
+        return currentPath === "/";
+    }
+    return currentPath.startsWith(href);
+};
+---
+
+<section class="bg-white/10 backdrop-blur max-w-5xl mx-auto rounded-full w-full px-3 md:px-3 py-2 md:py-1.5 relative z-20">
+
+    <nav class="flex items-center justify-between gap-x-5">
+
+        <!-- Logo -->
+        <a href="/" class="md:ml-2">
+            <Image
+                src={LogoFullWhite}
+                class="object-contain h-6 w-fit"
+                alt="Logo principal de Foxcode"
+            />
+        </a>
+
+        <!-- Desktop Navigation -->
+        <div class="flex items-center text-sm text-white gap-x-2 md:gap-x-7">
+            
+            <!-- Links -->
+            <div class="hidden md:flex items-center gap-x-7">
+                {
+                    navLinks.map(({ href, label }) => {
+                        const active = isActive(href);
+                        return (
+                            <a href={href} class="group">
+                                <p
+                                    class={
+                                        `py-3  group-hover:text-white transition-colors
+                                        ${active ? "text-white" : "text-white/80"}`
+                                    }
+                                >
+                                    {label}
+                                </p>
+                            </a>
+                        );
+                    })
+                }
+            </div>
+
+            <!-- Btn Primary -->
+            <button
+                type="button"
+                class="bg-primary text-white px-3 py-2 font-medium rounded-full hover:bg-primary-dark transition cursor-pointer"
+                aria-haspopup="dialog" aria-expanded="false" aria-controls="contact-us-modal" data-hs-overlay="#contact-us-modal"
+            >
+                Contáctanos
+            </button>
+
+            <!-- Buttton Menu -->
+            <button
+                type="button"
+                class="md:hidden text-white bg-white/10 hover:bg-white/20 p-2 rounded-full transition cursor-pointer"
+                aria-haspopup="dialog" 
+                aria-expanded="false" 
+                aria-controls="hs-links-sidebar" 
+                aria-label="Toggle navigation" 
+                data-hs-overlay="#hs-links-sidebar"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-text-align-justify-icon lucide-text-align-justify size-4"
+                    ><path d="M3 5h18"></path><path d="M3 12h18"></path><path
+                        d="M3 19h18"></path></svg
+                >
+            </button>
+        </div>
+
+    </nav>
+
+</section>
+
+

@@ -1,0 +1,148 @@
+---
+import SelectDayModal from '@/components/SelectDayModal.astro';
+---
+
+<!-- Start Schedule Section -->
+<section class="py-20 max-xl:px-5 gr">
+  <div class="max-w-5xl mx-auto grid lg:grid-cols-2 gap-10">
+    <!-- Title and Description -->
+    <article class="space-y-7 w-full">
+      <h3 class="text-3xl lg:text-4xl font-medium text-white">
+        Agenda una reunión
+      </h3>
+      <p class="max-w-3xl max-sm:text-sm text-neutral-300">
+        Cuéntanos sobre tu idea o proyecto y te ayudamos a definir el alcance,
+        costos y siguientes pasos para llevar tu software a producción.
+      </p>
+
+      <ul class="space-y-2 text-sm text-neutral-300">
+        <li class="flex items-start gap-2">
+          <span class="mt-2 size-1.5 rounded-full bg-primary"></span>
+          <span>Sin compromiso, solo una conversación estratégica.</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="mt-2 size-1.5 rounded-full bg-primary"></span>
+          <span>Te llevas ideas claras y un posible roadmap inicial.</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="mt-2 size-1.5 rounded-full bg-primary"></span>
+          <span>Horarios adaptados a tu disponibilidad.</span>
+        </li>
+      </ul>
+
+      <p
+        class="w-fit text-sm px-4 py-2 rounded-full border border-white/10 bg-white/5 font-medium text-white"
+      >
+        Reunión estratégica gratuita de 30 minutos
+      </p>
+    </article>
+
+    <!-- Form -->
+    <article class="w-full space-y-5">
+      
+      <!-- Name -->
+      <div class="relative w-full">
+        <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder=""
+            required
+            autoComplete="off"
+            class="peer w-full border text-sm border-white/10 bg-white/5 rounded-lg px-4 pt-6.5 pb-3 placeholder-transparent hover:shadow focus:outline-none focus:ring-2 focus:ring-primary hover:bg-white/10"
+        />
+        <label
+            for="name"
+            class="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 transition-all duration-200
+                peer-placeholder-shown:top-1/2
+                peer-placeholder-shown:text-base
+                peer-[:not(:placeholder-shown)]:top-4
+                peer-[:not(:placeholder-shown)]:text-xs
+                peer-[:not(:placeholder-shown)]:font-medium
+                peer-focus:top-4
+                peer-focus:font-medium
+                peer-focus:text-xs"
+        >
+            Nombres Completos
+        </label>
+      </div>
+
+      <!-- Email -->
+      <div class="relative w-full">
+        <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder=""
+            required
+            autoComplete="off"
+            class="peer w-full border text-sm border-white/10 bg-white/5 rounded-lg px-4 pt-6.5 pb-3 placeholder-transparent hover:shadow focus:outline-none focus:ring-2 focus:ring-primary hover:bg-white/10"
+        />
+        <label
+            for="email"
+            class="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 transition-all duration-200
+                peer-placeholder-shown:top-1/2
+                peer-placeholder-shown:text-base
+                peer-[:not(:placeholder-shown)]:top-4
+                peer-[:not(:placeholder-shown)]:text-xs
+                peer-[:not(:placeholder-shown)]:font-medium
+                peer-focus:top-4
+                peer-focus:font-medium
+                peer-focus:text-xs"
+        >
+            Correo Electrónico
+        </label>
+      </div>
+      
+      <!-- Schedule -->
+      <div class="relative w-full">
+        <input
+            type="datetime-local"
+            id="schedule"
+            name="schedule"
+            placeholder=""
+            required
+            class="peer w-full border text-sm border-white/10 bg-white/5 rounded-lg px-4 pt-6.5 pb-3 placeholder-transparent hover:shadow focus:outline-none focus:ring-2 focus:ring-primary hover:bg-white/10"
+        />
+        <label
+            for="schedule"
+            class="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 transition-all duration-200
+                peer-placeholder-shown:top-1/2
+                peer-placeholder-shown:text-base
+                peer-[:not(:placeholder-shown)]:top-4
+                peer-[:not(:placeholder-shown)]:text-xs
+                peer-[:not(:placeholder-shown)]:font-medium
+                peer-focus:top-4
+                peer-focus:font-medium
+                peer-focus:text-xs"
+        >
+            Selecciona un fecha y hora
+        </label>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+          type="submit"
+          class="w-full bg-primary text-white py-3 text-sm font-medium rounded-lg hover:bg-primary-dark transition"
+      >
+          Agendar reunión
+      </button>
+
+      <p class="text-neutral-300 text-sm text-center">
+        Respondemos normalmente en menos de 24 horas. Tus datos estarán seguros con nosotros.
+      </p>
+
+    </article>
+  </div>
+</section>
+<!-- End Schedule Section -->
+
+
+<!-- Select Day Modal Component -->
+<div id="hs-scale-animation-modal" 
+  class="hs-overlay hidden size-full fixed top-0 start-0 z-80 overflow-x-hidden overflow-y-auto pointer-events-none hs-overlay hs-overlay-backdrop-open:bg-black/80 hs-overlay hs-overlay-backdrop-open:backdrop-blur-2xl"
+  role="dialog" tabindex="-1" aria-labelledby="hs-scale-animation-modal-label">
+  <SelectDayModal />
+</div>
+
+
